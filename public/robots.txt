@@ -1,0 +1,7 @@
+# Robots.txt for NexGrid Digital Solutions
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://ais-pre-2jqzby3i5atff2jg26yqrf-718731712360.europe-west2.run.app/sitemap.xml

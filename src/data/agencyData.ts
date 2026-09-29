@@ -4,7 +4,7 @@ export const agencyContactInfo = {
   companyName: 'NexGrid Digital Solutions',
   legalName: 'NexGrid Digital Solutions LLC',
   email: 'nexgriddigital@gmail.com',
-  phone: '+251 91 123 4567',
+  phone: '+251 906697634',
   location: 'Addis Ababa, Ethiopia & Working Worldwide',
   workingHours: 'Monday – Friday, 8:30 AM – 5:30 PM EAT',
   turnaroundTime: 'We reply within 4 hours during business days',

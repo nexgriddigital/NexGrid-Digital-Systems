@@ -81,6 +81,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin, isAdminLoggedI
                   {agencyContactInfo.email}
                 </a>
               </div>
+              <div>
+                Phone / WhatsApp:{' '}
+                <a
+                  href={`tel:${agencyContactInfo.phone.replace(/\s+/g, '')}`}
+                  className="text-slate-800 hover:text-sky-600 font-medium transition-colors"
+                >
+                  {agencyContactInfo.phone}
+                </a>
+              </div>
               <div className="text-slate-500">
                 {agencyContactInfo.location}
               </div>

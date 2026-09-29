@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { agencyContactInfo } from '../data/agencyData';
 import { ContactFormData } from '../types';
-import { CheckCircle2, Mail, Clock, Download, ArrowRight, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
+import { CheckCircle2, Mail, Phone, Clock, Download, ArrowRight, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
 import { sendTelegramNotification, ConsultationSubmission } from '../services/telegramService';
 import { saveClientLead } from '../services/cmsService';
 import { Toast } from './Toast';
@@ -162,6 +162,19 @@ Promise: Fixed pricing, 100% code ownership, 30-day warranty.
                 <div>
                   <div className="text-[11px] text-slate-500">Email us directly</div>
                   <div className="font-semibold text-slate-900">{agencyContactInfo.email}</div>
+                </div>
+              </a>
+
+              <a
+                href={`tel:${agencyContactInfo.phone.replace(/\s+/g, '')}`}
+                className="flex items-center gap-3 text-sm text-slate-700 hover:text-sky-600 transition-colors"
+              >
+                <div className="h-8 w-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div>
+                  <div className="text-[11px] text-slate-500">Call / WhatsApp directly</div>
+                  <div className="font-semibold text-slate-900">{agencyContactInfo.phone}</div>
                 </div>
               </a>
 

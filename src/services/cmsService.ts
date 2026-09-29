@@ -52,7 +52,7 @@ export const INITIAL_CMS_CONTENT: CMSContent = {
     'NexGrid is a modern web studio. We design and develop custom business websites, online stores, and web apps with guaranteed fixed quotes, zero tech jargon, and 100% full code ownership.',
   ctaButtonText: 'Calculate Your Estimate',
   agencyEmail: 'nexgriddigital@gmail.com',
-  agencyPhone: '+251 91 123 4567',
+  agencyPhone: '+251 906697634',
   agencyLocation: 'Addis Ababa, Ethiopia & Working Worldwide',
   workingHours: 'Monday – Friday, 8:30 AM – 5:30 PM EAT',
   turnaroundTime: 'We reply within 4 hours during business days',
