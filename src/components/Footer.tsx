@@ -56,9 +56,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTelegramSettings }) => {
           
           {/* Brand info */}
           <div className="md:col-span-5 space-y-3">
-            <div className="font-display text-xl font-bold tracking-tight text-slate-900 flex items-center gap-1">
-              <span>NexGrid</span>
-              <span className="text-sky-500 font-bold">.</span>
+            <div className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-slate-900">
+              <img
+                src="/logo.svg"
+                alt="NexGrid Logo"
+                className="h-8 w-8 object-contain"
+              />
+              <span className="flex items-center">
+                <span>NexGrid</span>
+                <span className="text-sky-500 font-bold">.</span>
+              </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-sm leading-relaxed">
               We design and build fast, modern websites, e-commerce stores, and custom web applications with transparent fixed pricing and 100% code ownership.

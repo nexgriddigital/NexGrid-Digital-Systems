@@ -36,10 +36,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Brand Logo */}
         <a
           href="#top"
-          className="group flex items-center gap-1.5 font-display text-xl font-bold tracking-tight text-slate-900"
+          className="group flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-slate-900"
         >
-          <span>NexGrid</span>
-          <span className="text-sky-500 font-bold">.</span>
+          <img
+            src="/logo.svg"
+            alt="NexGrid Logo"
+            className="h-8 w-8 object-contain transition-transform duration-200 group-hover:scale-105"
+          />
+          <span className="flex items-center">
+            <span>NexGrid</span>
+            <span className="text-sky-500 font-bold">.</span>
+          </span>
         </a>
 
         {/* Desktop Navigation Links */}
