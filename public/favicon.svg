@@ -1,124 +1,145 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
   <defs>
-    <!-- Deep Navy / Sapphire Blue Gradient for 'N' -->
-    <linearGradient id="nGradient" x1="120" y1="130" x2="260" y2="390" gradientUnits="userSpaceOnUse">
+    <!-- Deep Navy / Royal Blue gradient for N -->
+    <linearGradient id="nPrimary" x1="80" y1="120" x2="250" y2="400" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#2563EB" />
-      <stop offset="45%" stop-color="#1D4ED8" />
-      <stop offset="85%" stop-color="#0F2D6B" />
-      <stop offset="100%" stop-color="#0B1D47" />
+      <stop offset="35%" stop-color="#1D4ED8" />
+      <stop offset="70%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
     </linearGradient>
 
-    <!-- Vibrant Cyan / Teal Gradient for 'G' -->
-    <linearGradient id="gGradient" x1="220" y1="130" x2="410" y2="380" gradientUnits="userSpaceOnUse">
+    <!-- Teal / Cyan gradient for G -->
+    <linearGradient id="gPrimary" x1="220" y1="110" x2="440" y2="390" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#2DD4BF" />
       <stop offset="25%" stop-color="#06B6D4" />
-      <stop offset="70%" stop-color="#0891B2" />
-      <stop offset="100%" stop-color="#0F766E" />
+      <stop offset="65%" stop-color="#0891B2" />
+      <stop offset="100%" stop-color="#0E7490" />
     </linearGradient>
 
-    <!-- Metallic bevel highlights -->
-    <linearGradient id="nHighlight" x1="100" y1="140" x2="200" y2="360" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.8" />
-      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#1E40AF" stop-opacity="0.6" />
+    <!-- Luminous accent cyan for G inner channel -->
+    <linearGradient id="gAccent" x1="260" y1="140" x2="430" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A5F3FC" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2DD4BF" />
     </linearGradient>
 
-    <linearGradient id="gHighlight" x1="250" y1="140" x2="380" y2="340" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#67E8F9" stop-opacity="0.9" />
-      <stop offset="50%" stop-color="#22D3EE" stop-opacity="0.3" />
-      <stop offset="100%" stop-color="#0D9488" stop-opacity="0.7" />
+    <!-- Luminous accent blue for N inner channel -->
+    <linearGradient id="nAccent" x1="100" y1="140" x2="230" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
     </linearGradient>
 
-    <!-- Soft Drop Shadow -->
-    <filter id="logoShadow" x="-15%" y="-15%" width="130%" height="130%" filterUnits="userSpaceOnUse">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0B192C" flood-opacity="0.25" />
+    <!-- Subtle drop shadow -->
+    <filter id="logoDepth" x="-10%" y="-10%" width="125%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#030712" flood-opacity="0.22" />
     </filter>
   </defs>
 
-  <g filter="url(#logoShadow)">
-    <!-- BACK/INTERLOCK LAYER: 'G' Top Arch Arc -->
+  <g filter="url(#logoDepth)">
+    <!-- ==================== G BACKGROUND ARC ==================== -->
+    <!-- Top arch of G curving from N's junction -->
     <path
-      d="M 270 248 C 265 190 310 142 376 142 C 435 142 478 185 478 244 C 478 266 470 286 458 300 L 418 274 C 424 266 428 255 428 244 C 428 214 404 188 374 188 C 342 188 318 214 316 248 Z"
-      fill="url(#gGradient)"
+      d="M 235 255 C 235 185 285 130 355 130 C 418 130 460 172 460 235 C 460 252 455 268 446 280 L 406 256 C 411 249 414 242 414 235 C 414 200 388 174 355 174 C 320 174 290 202 284 240 Z"
+      fill="url(#gPrimary)"
     />
 
-    <!-- 'N' MAIN BODY -->
-    <!-- Left peak, descending diagonal, sharp bottom point, ascending diagonal to right -->
+    <!-- ==================== N MONOGRAM ==================== -->
+    <!-- N Left Outer Blade / Wing -->
     <path
-      d="M 194 142 L 254 366 L 202 366 L 164 212 L 128 366 L 76 366 L 148 142 Z"
-      fill="url(#nGradient)"
-    />
-    <!-- 'N' Outer dynamic wing/blade (the stylized folded left loop) -->
-    <path
-      d="M 148 142 L 194 142 L 132 366 C 114 366 92 342 82 320 C 72 296 74 250 94 200 Z"
-      fill="url(#nGradient)"
-      opacity="0.9"
-    />
-    <!-- 'N' Right leg interlock spear -->
-    <path
-      d="M 194 142 L 238 270 L 268 180 C 250 156 226 144 194 142 Z"
-      fill="url(#nHighlight)"
-      opacity="0.4"
+      d="M 160 110 L 195 110 L 126 385 C 108 385 88 365 78 340 C 66 312 70 262 92 208 Z"
+      fill="url(#nPrimary)"
     />
 
-    <!-- 'G' LOWER ARC & CROSSBAR -->
-    <!-- Sweeps down, curves up into the crossbar shelf, with the inner cut-channel -->
+    <!-- N Left Inner Cutout (Negative Space) -->
     <path
-      d="M 458 300 C 442 340 404 368 358 368 C 298 368 252 322 250 262 L 298 262 C 300 294 324 322 358 322 C 382 322 404 308 416 286 L 362 286 L 362 246 L 476 246 L 476 270 C 476 280 472 292 466 304 Z"
-      fill="url(#gGradient)"
+      d="M 152 145 L 180 145 L 128 355 C 114 345 102 320 102 290 C 104 255 120 205 152 145 Z"
+      fill="#ffffff"
+      opacity="0.08"
     />
 
-    <!-- 'G' Spur/Terminal Arrow Accent -->
+    <!-- N Center Diagonal Stem down to acute vertex -->
     <path
-      d="M 426 246 L 476 246 L 476 290 L 438 290 L 438 274 L 426 274 Z"
-      fill="url(#gHighlight)"
+      d="M 195 110 L 246 395 L 202 395 L 158 225 L 126 385 L 78 385 L 160 110 Z"
+      fill="url(#nPrimary)"
     />
 
-    <!-- INNER EMBOSSED BEVEL TRACKS (gives the distinct brushed metal precision groove from the logo) -->
-    <!-- 'N' inner groove -->
+    <!-- N Right Diagonal ascending leg (overlaps G) -->
     <path
-      d="M 152 165 L 182 165 L 126 348 C 112 334 100 306 102 278 C 104 246 122 198 152 165 Z"
-      fill="none"
-      stroke="#60A5FA"
-      stroke-width="5"
+      d="M 202 395 L 246 395 L 296 230 C 285 240 272 250 258 258 Z"
+      fill="url(#nPrimary)"
+    />
+
+    <!-- N Bevel Highlight Line -->
+    <path
+      d="M 164 125 L 188 125 L 122 370"
+      stroke="url(#nAccent)"
+      stroke-width="3"
       stroke-linecap="round"
-      stroke-linejoin="round"
+      opacity="0.7"
+      fill="none"
+    />
+    <path
+      d="M 195 128 L 240 380 L 210 380 L 168 220"
+      stroke="url(#nAccent)"
+      stroke-width="3.5"
+      stroke-linecap="round"
       opacity="0.6"
-    />
-    <path
-      d="M 188 170 L 236 342 L 210 342 L 168 214"
       fill="none"
-      stroke="#93C5FD"
-      stroke-width="4.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      opacity="0.5"
     />
 
-    <!-- 'G' inner groove -->
+    <!-- ==================== G FOREGROUND SWEEP ==================== -->
+    <!-- Bottom & Right Arc of G -->
     <path
-      d="M 374 166 C 418 166 452 198 454 242"
-      fill="none"
-      stroke="#A5F3FC"
-      stroke-width="5"
-      stroke-linecap="round"
-      opacity="0.75"
+      d="M 446 280 C 430 326 392 360 345 360 C 282 360 234 314 232 250 L 278 250 C 280 288 308 316 345 316 C 372 316 396 300 408 276 L 350 276 L 350 232 L 460 232 L 460 256 C 460 265 455 273 446 280 Z"
+      fill="url(#gPrimary)"
     />
+
+    <!-- G Spur / Crossbar block -->
     <path
-      d="M 444 314 C 426 338 396 348 360 348 C 316 348 278 316 274 270"
-      fill="none"
-      stroke="#67E8F9"
-      stroke-width="5"
-      stroke-linecap="round"
-      opacity="0.65"
+      d="M 412 232 L 460 232 L 460 274 L 424 274 L 424 258 L 412 258 Z"
+      fill="url(#gPrimary)"
     />
+
+    <!-- ==================== G INNER CHANNELS & HIGHLIGHTS ==================== -->
+    <!-- Concentric upper channel -->
     <path
-      d="M 380 266 L 452 266"
-      fill="none"
-      stroke="#A5F3FC"
+      d="M 355 152 C 404 152 438 184 440 228"
+      stroke="url(#gAccent)"
       stroke-width="4"
       stroke-linecap="round"
+      opacity="0.85"
+      fill="none"
+    />
+
+    <!-- Concentric lower channel -->
+    <path
+      d="M 432 298 C 414 326 384 338 346 338 C 304 338 266 306 260 262"
+      stroke="url(#gAccent)"
+      stroke-width="4.5"
+      stroke-linecap="round"
       opacity="0.8"
+      fill="none"
+    />
+
+    <!-- G horizontal crossbar highlight -->
+    <path
+      d="M 368 254 L 442 254"
+      stroke="url(#gAccent)"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      opacity="0.9"
+      fill="none"
+    />
+
+    <!-- Inner central G vertical accent bar -->
+    <path
+      d="M 368 240 L 368 268"
+      stroke="url(#gAccent)"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      opacity="0.8"
+      fill="none"
     />
   </g>
 </svg>
