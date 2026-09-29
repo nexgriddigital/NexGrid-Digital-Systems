@@ -14,6 +14,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: 'Services', href: '#services' },
+    { label: 'Our Work', href: '#work' },
     { label: 'How It Works', href: '#process' },
     { label: 'Pricing Calculator', href: '#estimator' },
     { label: 'Why NexGrid', href: '#why-us' },

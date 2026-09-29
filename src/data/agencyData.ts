@@ -1,4 +1,4 @@
-import { ServiceCapability } from '../types';
+import { ServiceCapability, ProjectWork } from '../types';
 
 export const agencyContactInfo = {
   companyName: 'NexGrid Digital Solutions',
@@ -220,3 +220,107 @@ export const pricingPresets = {
     description: 'Transform an outdated, slow WordPress or template website into a modern, lightning-fast engine with 100% SEO preserved.',
   },
 };
+
+export const portfolioProjects: ProjectWork[] = [
+  {
+    id: 'aura-capital-web',
+    title: 'Aura Capital Partners Corporate Web Experience',
+    category: 'marketing',
+    categoryLabel: 'Corporate & Marketing',
+    highlightBadge: 'Bespoke Brand Build',
+    subtitle: 'Sub-second luxury corporate web presence with interactive deal showcase',
+    headline: 'Positioning a premier African investment firm with an authoritative, high-speed digital presence.',
+    description: 'Aura Capital required an executive web experience that commanded trust from international institutional investors and partners. We engineered a sleek, editorial aesthetic featuring custom typographic pacing, instant page loads, interactive deal showcases, and seamless mobile responsiveness.',
+    featuredQuote: 'NexGrid delivered a website that immediately elevated our brand authority with global partners and institutional investors.',
+    metrics: [
+      { label: 'Page Load Speed', value: '0.48s' },
+      { label: 'Investor Inquiries', value: '+180%' },
+      { label: 'Lighthouse Score', value: '99 / 100' },
+      { label: 'Bounce Rate', value: '-44%' },
+    ],
+    deliverables: [
+      'Editorial luxury corporate art direction and custom typography',
+      'Interactive transaction and portfolio showcase with instant filtering',
+      'Sub-second edge caching across 280+ global CDN nodes',
+      'Encrypted investor briefing download and gated PDF whitepapers',
+      'Full brand asset ownership and documentation suite',
+    ],
+    techStack: ['React', 'Tailwind CSS', 'Next.js', 'Cloudflare Edge', 'TypeScript'],
+  },
+  {
+    id: 'solis-retail-store',
+    title: 'Solis Apparel & Lifestyle E-Commerce Store',
+    category: 'ecommerce',
+    categoryLabel: 'E-Commerce Store',
+    highlightBadge: 'Telebirr & Card Checkout',
+    subtitle: 'Mobile-first online catalog with 1-tap checkout and automated inventory',
+    headline: 'Modernized shopping experience that cut cart abandonment and enabled local mobile payments.',
+    description: 'Replaced a slow template storefront with a custom headless e-commerce experience. Features an instant slide-out cart, localized Ethiopian payment gateways (Telebirr, Chapa, CBE Birr), international Stripe card processing, and automated customer order receipt dispatch.',
+    featuredQuote: 'Our mobile conversion rate surged within the first two weeks of launching the new NexGrid storefront.',
+    metrics: [
+      { label: 'Mobile Conversion', value: '+142%' },
+      { label: 'Page Load Speed', value: '0.62s' },
+      { label: 'Cart Drop-off', value: '-38%' },
+      { label: 'Repeat Customers', value: '+2.4x' },
+    ],
+    deliverables: [
+      'Frictionless slide-out cart drawer with instant quantity updates',
+      'Integrated Telebirr, Chapa, CBE Birr & Stripe card processing',
+      'High-resolution product variant & zoom imagery system',
+      'Automated inventory synchronization and shipping calculator',
+      'Customer order tracking via SMS and email confirmation',
+    ],
+    techStack: ['Shopify Plus', 'React', 'Tailwind CSS', 'Stripe', 'Telebirr API'],
+  },
+  {
+    id: 'vanguard-client-portal',
+    title: 'Vanguard Operations & Client Self-Service Portal',
+    category: 'webapp',
+    categoryLabel: 'Custom Web Application',
+    highlightBadge: 'Operations Automation',
+    subtitle: 'Eliminating manual paperwork with automated self-service customer dashboards',
+    headline: 'Consolidated client onboarding, statement tracking, and document exchanges into one secure web portal.',
+    description: 'Vanguard struggled with hundreds of daily WhatsApp and email threads for project status and billing. We developed a secure, passwordless authentication portal where clients upload files, download auto-generated tax invoices, track milestones, and book consultations directly.',
+    featuredQuote: 'Saved our team over 30 hours every single week by eliminating manual document back-and-forth.',
+    metrics: [
+      { label: 'Admin Time Saved', value: '30+ hrs/wk' },
+      { label: 'Client Satisfaction', value: '99.4%' },
+      { label: 'Turnaround Time', value: '4x faster' },
+      { label: 'Data Encryption', value: 'Enterprise' },
+    ],
+    deliverables: [
+      'Secure passwordless authentication & single-sign-on for clients',
+      'Automated PDF statement generation and financial transaction receipts',
+      'Encrypted client file vault with drag-and-drop uploads',
+      'Real-time project milestone tracker & notification emails',
+      'Staff administration console for instant client approvals',
+    ],
+    techStack: ['React', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'AWS S3'],
+  },
+  {
+    id: 'zenith-speed-redesign',
+    title: 'Zenith Advisory Corporate Redesign & Speed Makeover',
+    category: 'redesign',
+    categoryLabel: 'Website Redesign',
+    highlightBadge: '100 Google Lighthouse',
+    subtitle: 'Rebuilding a bloated WordPress site into a sub-second Google search leader',
+    headline: 'Transformed a 6.2-second loading legacy site into a lightning-fast modern brand asset.',
+    description: 'Zenith was losing prospective leads due to an outdated, slow WordPress website plagued by plugin bloat. We completely recoded the site from the ground up, preserving all Google rankings via careful 301 redirect mapping, resulting in a perfect 100 Google Lighthouse score.',
+    featuredQuote: 'Our Google search positions climbed across the board within 30 days of the speed overhaul.',
+    metrics: [
+      { label: 'Page Load Speed', value: '0.55s' },
+      { label: 'Lighthouse Score', value: '100 / 100' },
+      { label: 'Organic Search Traffic', value: '+215%' },
+      { label: 'Visitor Bounce Rate', value: '-52%' },
+    ],
+    deliverables: [
+      'Clean, authoritative corporate design refresh aligned with modern luxury standards',
+      'Complete migration off bloated WordPress plugins and vulnerable themes',
+      'Comprehensive 301 URL redirect preserve matrix ensuring 0 broken links',
+      'Integrated Schema.org structured data and Google Search Console optimization',
+      'Responsive testing across 15+ mobile and desktop screen sizes',
+    ],
+    techStack: ['React', 'Next.js', 'Tailwind CSS', 'Vercel Edge', 'Schema.org'],
+  },
+];
+

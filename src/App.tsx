@@ -3,6 +3,7 @@ import { ContactFormData } from './types';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { CapabilitiesBento } from './components/CapabilitiesBento';
+import { OurWorkSection } from './components/OurWorkSection';
 import { HowItWorks } from './components/HowItWorks';
 import { ProjectEstimator } from './components/ProjectEstimator';
 import { ComparisonMatrix } from './components/ComparisonMatrix';
@@ -12,11 +13,18 @@ import { Footer } from './components/Footer';
 import { ConsultationModal, ConsultationEstimate } from './components/ConsultationModal';
 import { TelegramSettingsModal } from './components/TelegramSettingsModal';
 import { ScrollProgressBar } from './components/ScrollProgressBar';
+import { SectionNavDots } from './components/SectionNavDots';
+import { AdminLoginModal } from './components/AdminLoginModal';
+import { AdminCMSModal } from './components/AdminCMSModal';
+import { getAdminSession, AdminUser } from './services/authService';
 
 export default function App() {
   const [contactPrefill, setContactPrefill] = useState<Partial<ContactFormData>>({});
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   const [isTelegramSettingsOpen, setIsTelegramSettingsOpen] = useState(false);
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(getAdminSession());
+  const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
+  const [isAdminCMSOpen, setIsAdminCMSOpen] = useState(false);
   const [consultationEstimate, setConsultationEstimate] = useState<ConsultationEstimate>({
     projectType: 'Business & Marketing Website',
     scopeLevel: 'Standard (6–12 pages)',
@@ -110,10 +118,31 @@ export default function App() {
     scrollToSection('contact');
   };
 
+  useEffect(() => {
+    const handleAuthChange = (e: CustomEvent<AdminUser | null>) => {
+      setAdminUser(e.detail);
+    };
+    window.addEventListener('nexgrid_auth_change', handleAuthChange as EventListener);
+    return () => {
+      window.removeEventListener('nexgrid_auth_change', handleAuthChange as EventListener);
+    };
+  }, []);
+
+  const handleOpenAdminAuth = () => {
+    if (adminUser) {
+      setIsAdminCMSOpen(true);
+    } else {
+      setIsAdminLoginOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Slim & Subtle Scroll Progress Bar at very top of page */}
       <ScrollProgressBar />
+
+      {/* Floating Section Navigation Dots on right side */}
+      <SectionNavDots />
 
       {/* Permanent Light Sticky Navigation */}
       <Navbar
@@ -132,6 +161,17 @@ export default function App() {
         <CapabilitiesBento
           onSelectServiceForEstimate={handleSelectServiceForEstimate}
           onOpenContact={handleOpenContactWithNote}
+        />
+
+        {/* Our Work & Real Client Case Studies */}
+        <OurWorkSection
+          onOpenContactWithProject={(projectName) => {
+            setContactPrefill((prev) => ({
+              ...prev,
+              projectScopeNotes: `I saw your work on "${projectName}" and would like to build a similar high-performance solution for my business.`,
+            }));
+            scrollToSection('contact');
+          }}
         />
 
         {/* Simple 3-Step Client Journey */}
@@ -154,7 +194,34 @@ export default function App() {
       </main>
 
       {/* Clean Footer */}
-      <Footer />
+      <Footer
+        onOpenAdminLogin={handleOpenAdminAuth}
+        isAdminLoggedIn={!!adminUser}
+      />
+
+      {/* Admin Authentication Login Modal */}
+      <AdminLoginModal
+        isOpen={isAdminLoginOpen}
+        onClose={() => setIsAdminLoginOpen(false)}
+        onLoginSuccess={(user) => {
+          setAdminUser(user);
+          setIsAdminLoginOpen(false);
+          setIsAdminCMSOpen(true);
+        }}
+      />
+
+      {/* Easy Content Editor (CMS) Suite */}
+      {adminUser && (
+        <AdminCMSModal
+          isOpen={isAdminCMSOpen}
+          onClose={() => setIsAdminCMSOpen(false)}
+          user={adminUser}
+          onLogout={() => {
+            setAdminUser(null);
+            setIsAdminCMSOpen(false);
+          }}
+        />
+      )}
 
       {/* Consultation Modal Triggered by 'Use This Quote for Consultation' */}
       <ConsultationModal

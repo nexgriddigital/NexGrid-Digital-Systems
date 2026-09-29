@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, ShieldCheck, Clock, Zap, Layers, ShoppingBag, Globe } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Clock, Zap, Layers, ShoppingBag, Globe, Sparkles } from 'lucide-react';
+import { getCMSContent, CMSContent } from '../services/cmsService';
 
 interface HeroProps {
   onOpenEstimator: () => void;
@@ -8,6 +9,19 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenEstimator, onOpenContact }) => {
   const [selectedPackage, setSelectedPackage] = useState<'marketing' | 'ecommerce' | 'webapp'>('marketing');
+  const [cmsContent, setCmsContent] = useState<CMSContent>(getCMSContent());
+
+  useEffect(() => {
+    const handleCmsUpdate = (e: CustomEvent<CMSContent>) => {
+      if (e.detail) {
+        setCmsContent(e.detail);
+      }
+    };
+    window.addEventListener('nexgrid_cms_update', handleCmsUpdate as EventListener);
+    return () => {
+      window.removeEventListener('nexgrid_cms_update', handleCmsUpdate as EventListener);
+    };
+  }, []);
 
   const packages = {
     marketing: {
@@ -61,7 +75,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator, onOpenContact }) =>
   const IconComponent = currentPkg.icon;
 
   return (
-    <section id="top" className="relative pt-12 pb-16 lg:pt-18 lg:pb-24 overflow-hidden border-b border-slate-200 bg-white">
+    <section id="top" className="relative pt-8 pb-16 lg:pt-14 lg:pb-24 overflow-hidden border-b border-slate-200 bg-white">
+      {/* Dynamic Announcement Banner managed from CMS */}
+      {cmsContent.announcementActive && cmsContent.announcementText && (
+        <div className="mb-8 -mt-4 bg-sky-50/90 border-y border-sky-200/80 px-4 py-2.5 text-center text-xs font-semibold text-sky-950 flex items-center justify-center gap-2 shadow-2xs">
+          <Sparkles className="h-3.5 w-3.5 text-sky-600 shrink-0" />
+          <span>{cmsContent.announcementText}</span>
+        </div>
+      )}
+
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
@@ -79,12 +101,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator, onOpenContact }) =>
 
             {/* Clear, Honest Headline */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12] [text-wrap:balance]">
-              We build fast, modern websites for growing businesses.
+              {cmsContent.heroHeadline || 'We build fast, modern websites for growing businesses.'}
             </h1>
 
             {/* Client-friendly plain language */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
-              NexGrid is a modern web studio. We design and develop custom business websites, online stores, and web apps with guaranteed fixed quotes, zero tech jargon, and 100% full code ownership.
+              {cmsContent.heroSubtitle || 'NexGrid is a modern web studio. We design and develop custom business websites, online stores, and web apps with guaranteed fixed quotes, zero tech jargon, and 100% full code ownership.'}
             </p>
 
             {/* Primary Action Buttons */}
@@ -93,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEstimator, onOpenContact }) =>
                 onClick={onOpenEstimator}
                 className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold text-white bg-[#1F1F1F] hover:bg-slate-800 active:scale-95 rounded-lg shadow-sm transition-all cursor-pointer border border-[#1F1F1F]"
               >
-                <span>Calculate Your Project Price</span>
+                <span>{cmsContent.ctaButtonText || 'Calculate Your Project Price'}</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
 

@@ -35,3 +35,19 @@ export interface ContactFormData {
   targetTimeline: string;
   projectScopeNotes: string;
 }
+
+export interface ProjectWork {
+  id: string;
+  title: string;
+  category: 'all' | 'marketing' | 'ecommerce' | 'webapp' | 'redesign';
+  categoryLabel: string;
+  subtitle: string;
+  headline: string;
+  description: string;
+  highlightBadge?: string;
+  featuredQuote?: string;
+  metrics: { label: string; value: string }[];
+  deliverables: string[];
+  techStack: string[];
+  isCMSShowcase?: boolean;
+}

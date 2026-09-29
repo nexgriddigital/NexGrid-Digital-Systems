@@ -28,22 +28,27 @@ export const Toast: React.FC<ToastProps> = ({
       return;
     }
 
-    const intervalTime = 50;
-    const totalSteps = duration / intervalTime;
-    const decrement = 100 / totalSteps;
+    // Reset progress to 100 on open
+    setProgress(100);
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev <= decrement) {
-          clearInterval(timer);
-          onClose();
-          return 0;
-        }
-        return prev - decrement;
-      });
-    }, intervalTime);
+    const startTime = Date.now();
 
-    return () => clearInterval(timer);
+    // Timer to dismiss toast cleanly after duration
+    const dismissTimer = setTimeout(() => {
+      onClose();
+    }, duration);
+
+    // Smooth interval to decrement progress bar purely for visuals
+    const progressInterval = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const remainingPercent = Math.max(0, 100 - (elapsed / duration) * 100);
+      setProgress(remainingPercent);
+    }, 50);
+
+    return () => {
+      clearTimeout(dismissTimer);
+      clearInterval(progressInterval);
+    };
   }, [isOpen, duration, onClose]);
 
   if (!isOpen) return null;

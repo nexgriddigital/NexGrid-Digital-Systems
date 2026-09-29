@@ -1,6 +1,7 @@
 import React from 'react';
 import { capabilityServices } from '../data/agencyData';
 import { CheckCircle2, ArrowRight, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface CapabilitiesBentoProps {
   onSelectServiceForEstimate: (serviceId: string) => void;
@@ -12,11 +13,17 @@ export const CapabilitiesBento: React.FC<CapabilitiesBentoProps> = ({
   onOpenContact,
 }) => {
   return (
-    <section id="services" className="py-16 lg:py-24 border-b border-slate-200 bg-slate-50/60">
+    <section id="services" className="py-16 lg:py-24 border-b border-slate-200 bg-slate-50/60 overflow-hidden">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-2xl space-y-3 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl space-y-3 mb-12"
+        >
           <div className="text-xs font-semibold uppercase tracking-wider text-sky-600">
             What We Do
           </div>
@@ -26,14 +33,23 @@ export const CapabilitiesBento: React.FC<CapabilitiesBentoProps> = ({
           <p className="text-base text-slate-600">
             Every business is unique. We do not force cookie-cutter templates. We design and engineer websites and digital tools that solve your exact operational and sales challenges.
           </p>
-        </div>
+        </motion.div>
 
-        {/* 4 Clean Service Cards */}
+        {/* 4 Clean Service Cards with Framer Motion subtle fade and scale entrance */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {capabilityServices.map((service) => (
-            <div
+          {capabilityServices.map((service, index) => (
+            <motion.div
               key={service.id}
-              className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between hover:border-slate-400 transition-all shadow-xs"
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.55,
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -4, transition: { duration: 0.25, ease: 'easeOut' } }}
+              className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-shadow shadow-xs"
             >
               <div className="space-y-4">
                 
@@ -98,7 +114,7 @@ export const CapabilitiesBento: React.FC<CapabilitiesBentoProps> = ({
                 </button>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 

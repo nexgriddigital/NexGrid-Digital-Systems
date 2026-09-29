@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { agencyContactInfo } from '../data/agencyData';
-import { ArrowUp, Mail, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUp, Mail, ShieldCheck, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
 import { sendNewsletterSubscriber } from '../services/telegramService';
 import { Toast } from './Toast';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenAdminLogin?: () => void;
+  isAdminLoggedIn?: boolean;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenAdminLogin, isAdminLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -100,6 +105,7 @@ export const Footer: React.FC = () => {
                 Company
               </div>
               <ul className="space-y-2 text-slate-600">
+                <li><a href="#work" className="hover:text-slate-950 transition-colors font-medium text-sky-600">Our Work &amp; Case Studies</a></li>
                 <li><a href="#process" className="hover:text-slate-950 transition-colors">How It Works</a></li>
                 <li><a href="#estimator" className="hover:text-slate-950 transition-colors">Pricing Calculator</a></li>
                 <li><a href="#why-us" className="hover:text-slate-950 transition-colors">Why NexGrid</a></li>
@@ -194,7 +200,7 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} {agencyContactInfo.companyName}. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-4 text-xs">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs">
             <span>Guaranteed Fixed Quotes</span>
             <span>·</span>
             <span>100% Code Ownership</span>
@@ -205,6 +211,14 @@ export const Footer: React.FC = () => {
             >
               <span>Back to top</span>
               <ArrowUp className="h-3 w-3" />
+            </button>
+            <span>·</span>
+            <button
+              onClick={onOpenAdminLogin}
+              className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
+            >
+              <Lock className="h-3 w-3 text-slate-400" />
+              <span>Admin Login</span>
             </button>
           </div>
         </div>

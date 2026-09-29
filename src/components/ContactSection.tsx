@@ -3,6 +3,7 @@ import { agencyContactInfo } from '../data/agencyData';
 import { ContactFormData } from '../types';
 import { CheckCircle2, Mail, Clock, Download, ArrowRight, ShieldCheck, MessageCircle, ExternalLink } from 'lucide-react';
 import { sendTelegramNotification, ConsultationSubmission } from '../services/telegramService';
+import { saveClientLead } from '../services/cmsService';
 import { Toast } from './Toast';
 
 interface ContactSectionProps {
@@ -77,6 +78,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialData }) =
     if (res.directUrl) {
       setDirectTelegramUrl(res.directUrl);
     }
+
+    // Persist lead for Admin CMS
+    saveClientLead({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: 'Website Form',
+      company: formData.company.trim(),
+      projectType: formData.projectType,
+      estimatedBudget: formData.estimatedBudget,
+      targetTimeline: formData.targetTimeline,
+      notes: formData.projectScopeNotes.trim(),
+    });
 
     if (res.success) {
       setToastMessage('Inquiry successfully delivered to our Telegram bot! We review and reply within 4 hours.');
