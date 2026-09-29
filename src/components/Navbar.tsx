@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowRight, MessageSquare } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 interface NavbarProps {
   onOpenEstimator: () => void;
   onOpenContact: () => void;
-  onOpenTelegramSettings?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenEstimator,
   onOpenContact,
-  onOpenTelegramSettings,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -64,17 +62,6 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Right Actions */}
         <div className="flex items-center gap-2.5">
-          {onOpenTelegramSettings && (
-            <button
-              onClick={onOpenTelegramSettings}
-              title="Telegram Bot Settings"
-              aria-label="Telegram Bot Settings"
-              className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-600 hover:text-sky-600 hover:bg-sky-50 transition-colors cursor-pointer"
-            >
-              <MessageSquare className="h-4 w-4" />
-            </button>
-          )}
-
           <button
             onClick={onOpenContact}
             className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#1F1F1F] hover:bg-slate-800 active:scale-95 rounded-lg transition-all shadow-xs cursor-pointer whitespace-nowrap"
@@ -117,17 +104,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Get a Free Quote
             </button>
-            {onOpenTelegramSettings && (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenTelegramSettings();
-                }}
-                className="w-full py-2 text-center text-xs font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200"
-              >
-                Telegram Bot Settings
-              </button>
-            )}
           </div>
         </div>
       )}

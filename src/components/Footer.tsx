@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { agencyContactInfo } from '../data/agencyData';
-import { ArrowUp, Mail, Bot, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowUp, Mail, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { sendNewsletterSubscriber } from '../services/telegramService';
 import { Toast } from './Toast';
 
-interface FooterProps {
-  onOpenTelegramSettings?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenTelegramSettings }) => {
+export const Footer: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -127,16 +123,6 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTelegramSettings }) => {
               >
                 Start Your Project
               </a>
-              {onOpenTelegramSettings && (
-                <button
-                  type="button"
-                  onClick={onOpenTelegramSettings}
-                  className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-[11px] font-medium text-slate-600 hover:text-sky-600 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors cursor-pointer"
-                >
-                  <Bot className="h-3 w-3 text-sky-600" />
-                  <span>Telegram Bot Settings</span>
-                </button>
-              )}
             </div>
           </div>
 

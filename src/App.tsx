@@ -11,6 +11,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ConsultationModal, ConsultationEstimate } from './components/ConsultationModal';
 import { TelegramSettingsModal } from './components/TelegramSettingsModal';
+import { ScrollProgressBar } from './components/ScrollProgressBar';
 
 export default function App() {
   const [contactPrefill, setContactPrefill] = useState<Partial<ContactFormData>>({});
@@ -36,6 +37,33 @@ export default function App() {
     document.body.className = 'bg-slate-50 text-slate-900 antialiased selection:bg-[#1F1F1F] selection:text-white';
   }, []);
 
+  // Hidden admin access: Only accessible via Alt + Shift + T or #admin-telegram
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.altKey && e.shiftKey && e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        setIsTelegramSettingsOpen((prev) => !prev);
+      }
+    };
+
+    const handleHashChange = () => {
+      if (window.location.hash === '#admin-telegram') {
+        setIsTelegramSettingsOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('hashchange', handleHashChange);
+    if (window.location.hash === '#admin-telegram') {
+      setIsTelegramSettingsOpen(true);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
     if (el) {
@@ -45,6 +73,10 @@ export default function App() {
 
   const handleSelectServiceForEstimate = (serviceId: string) => {
     scrollToSection('estimator');
+    const estimatorSection = document.getElementById('estimator');
+    if (estimatorSection) {
+      estimatorSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleOpenConsultationWithEstimate = (estimate: ConsultationEstimate) => {
@@ -52,7 +84,7 @@ export default function App() {
     setIsConsultationModalOpen(true);
   };
 
-  const handleApplyEstimateToContact = (estimateData: {
+  const handleApplyEstimateToContact = (data: {
     projectType: string;
     estimatedBudget: string;
     targetTimeline: string;
@@ -60,11 +92,12 @@ export default function App() {
   }) => {
     setContactPrefill((prev) => ({
       ...prev,
-      projectType: estimateData.projectType,
-      estimatedBudget: estimateData.estimatedBudget,
-      targetTimeline: estimateData.targetTimeline,
-      projectScopeNotes: `Estimated Scope:\n${estimateData.scopeSummary}\n\nAdditional notes: `,
+      projectType: data.projectType,
+      estimatedBudget: data.estimatedBudget,
+      targetTimeline: data.targetTimeline,
+      projectScopeNotes: data.scopeSummary,
     }));
+    scrollToSection('contact');
   };
 
   const handleOpenContactWithNote = (note?: string) => {
@@ -79,11 +112,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
+      {/* Slim & Subtle Scroll Progress Bar at very top of page */}
+      <ScrollProgressBar />
+
       {/* Permanent Light Sticky Navigation */}
       <Navbar
         onOpenEstimator={() => scrollToSection('estimator')}
         onOpenContact={() => scrollToSection('contact')}
-        onOpenTelegramSettings={() => setIsTelegramSettingsOpen(true)}
       />
 
       <main>
@@ -118,24 +153,25 @@ export default function App() {
         <ContactSection initialData={contactPrefill} />
       </main>
 
-      {/* Clean Footer with Telegram Settings Link */}
-      <Footer onOpenTelegramSettings={() => setIsTelegramSettingsOpen(true)} />
+      {/* Clean Footer */}
+      <Footer />
 
       {/* Consultation Modal Triggered by 'Use This Quote for Consultation' */}
       <ConsultationModal
         isOpen={isConsultationModalOpen}
         onClose={() => setIsConsultationModalOpen(false)}
         estimate={consultationEstimate}
-        onOpenTelegramSettings={() => {
-          setIsConsultationModalOpen(false);
-          setIsTelegramSettingsOpen(true);
-        }}
       />
 
-      {/* Telegram Bot Setup Modal */}
+      {/* Telegram Bot Setup Modal (Owner / Admin Only via Alt+Shift+T or #admin-telegram) */}
       <TelegramSettingsModal
         isOpen={isTelegramSettingsOpen}
-        onClose={() => setIsTelegramSettingsOpen(false)}
+        onClose={() => {
+          setIsTelegramSettingsOpen(false);
+          if (window.location.hash === '#admin-telegram') {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          }
+        }}
       />
     </div>
   );

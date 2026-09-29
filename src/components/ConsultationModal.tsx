@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, CheckCircle2, Clock, ShieldCheck, Download, ExternalLink, Settings, Sparkles, MessageCircle } from 'lucide-react';
+import { X, Send, CheckCircle2, Clock, ShieldCheck, Download, ExternalLink, Sparkles, MessageCircle } from 'lucide-react';
 import { sendTelegramNotification, ConsultationSubmission, formatConsultationPlainText } from '../services/telegramService';
 import { Toast } from './Toast';
 
@@ -16,14 +16,12 @@ interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
   estimate: ConsultationEstimate;
-  onOpenTelegramSettings: () => void;
 }
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   isOpen,
   onClose,
   estimate,
-  onOpenTelegramSettings,
 }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -347,14 +345,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
               {/* Submit Buttons */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <button
-                  type="button"
-                  onClick={onOpenTelegramSettings}
-                  className="text-[11px] text-slate-500 hover:text-slate-800 flex items-center gap-1 cursor-pointer order-2 sm:order-1"
-                >
-                  <Settings className="h-3 w-3" />
-                  <span>Configure Telegram Bot Token</span>
-                </button>
+                <div className="text-[11px] text-slate-400 flex items-center gap-1.5 order-2 sm:order-1">
+                  <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" />
+                  <span>Direct, confidential dispatch to our engineers</span>
+                </div>
 
                 <div className="flex items-center gap-2.5 w-full sm:w-auto order-1 sm:order-2">
                   <button
